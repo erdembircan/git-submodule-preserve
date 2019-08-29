@@ -1,0 +1,19 @@
+{
+  "root": true,
+  "extends": ["airbnb-base", "prettier"],
+  "plugins": ["import", "prettier"],
+  "parserOptions": {
+    "sourceType": "module",
+    "parser": "babel-eslint"
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "singleQuote": true,
+        "printWidth": 120
+      }
+    ]
+  }
+}
