@@ -105,4 +105,11 @@ export default function SubmodulePreserve() {
   this.nuxt.hook('generate:done', generateDone);
 }
 
+if (process.env.NODE_ENV === 'test') {
+  module.exports.toolBox = {
+    copyDir,
+  };
+}
+
+// required for publishing the nuxt module as a npm package
 module.exports.meta = '../package.json';

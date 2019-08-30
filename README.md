@@ -4,6 +4,17 @@
 
 ## 👷 WIP
 
+## Usage
+
+```bash
+# install using your favourite package manager
+npm install git-submodule-preserve -D
+# or
+yarn add git-submodule-preserve -D
+```
+
+> 💡 It is highly recommended to use this module as a `buildModules` in your `nuxt.config.js` file and install as a `devDependency` for a faster production startup and smaller `node_modules` size.
+
 ## License
 
 MIT
