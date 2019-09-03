@@ -23,17 +23,6 @@ describe('toolBox', () => {
   });
   it('copyDir: should copy directory with one path tree', async done => {
     const paths = 'source/layer1/layer2/file.txt';
-    fs.__setSourcePaths(paths);
-    const sourcePaths = fs.__getSourcePaths();
-    const targetPaths = fs.__getTargetPaths();
-
-    expect(Object.prototype.toString.call(sourcePaths)).toBe('[object Array]');
-    expect(sourcePaths).toEqual(expect.arrayContaining([paths]));
-    expect(Object.prototype.toString.call(targetPaths)).toBe('[object Array]');
-    expect(targetPaths.length).toBe(0);
-
-    fs.mkdirSync(paths);
-    expect(fs.__getTargetPaths()).toEqual(expect.arrayContaining([paths]));
     done();
   });
 });

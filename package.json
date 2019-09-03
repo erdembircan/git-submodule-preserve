@@ -18,7 +18,8 @@
   ],
   "scripts": {
     "lint": "eslint src",
-    "dev:test": "jest --verbose --watchAll"
+    "dev:test": "jest --verbose --watchAll",
+    "test": "npm run lint & jest"
   },
   "dependencies": {
     "fancy-terminal": "^1.0.1",

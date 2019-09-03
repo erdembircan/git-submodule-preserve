@@ -1,4 +1,4 @@
-# git-submodule-preserve
+# git-submodule-preserve [![Build Status](https://travis-ci.org/erdembircan/git-submodule-preserve.svg?branch=master)](https://travis-ci.org/erdembircan/git-submodule-preserve)
 
 > nuxt module for preserving git submodule in generated static apps
 
@@ -13,7 +13,7 @@ npm install git-submodule-preserve -D
 yarn add git-submodule-preserve -D
 ```
 
-> 💡 It is highly recommended to use this module as a `buildModules` in your `nuxt.config.js` file and install as a `devDependency` for a faster production startup and smaller `node_modules` size.
+> 💡 It is highly recommended to use this module under `buildModules` in your `nuxt.config.js` file and install as a `devDependency` for a faster production startup and smaller `node_modules` size.
 
 ## License
 
