@@ -28,6 +28,33 @@ function mkdirSync(to) {
   }
 }
 
+function __pathRegex(p, str) {
+  const pathRegex = new RegExp(`^${p}/([^/]+)`, 'g');
+  const temp = pathRegex.exec(str);
+  return temp === null ? null : temp[1];
+}
+
+function readdirSync(src) {
+  const tempArray = [];
+  sourcePaths.forEach(s => {
+    const match = __pathRegex(src, s);
+    if (match) {
+      tempArray.push(match);
+    }
+  });
+  return [...new Set(tempArray)];
+}
+
+function statSync(p) {
+  const base = path.extname(p);
+
+  return {
+    isDirectory() {
+      return base === '';
+    },
+  };
+}
+
 fs.__setSourcePaths = __setSourcePaths;
 
 fs.__getSourcePaths = () => [...sourcePaths];
@@ -37,7 +64,13 @@ fs.mkdirSync = mkdirSync;
 fs.__moduleMockTest = true;
 
 fs.__resetAllPaths = () => {
-  (targetPaths = []), (sourcePaths = []);
+  targetPaths = [];
+  sourcePaths = [];
 };
+
+fs.__pathRegex = __pathRegex;
+fs.readdirSync = readdirSync;
+
+fs.statSync = statSync;
 
 export default fs;

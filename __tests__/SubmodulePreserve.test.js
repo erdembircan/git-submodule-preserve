@@ -22,7 +22,12 @@ describe('toolBox', () => {
     done();
   });
   it('copyDir: should copy directory with one path tree', async done => {
-    const paths = 'source/layer1/layer2/file.txt';
+    const srcPath = 'path/to/file.txt';
+    const destPath = 'destPath';
+    fs.__setSourcePaths(srcPath);
+    await toolBox.copyDir('path', destPath);
+    expect(fs.__getTargetPaths().length).toBe(1);
+    expect(fs.__getTargetPaths()).toEqual(expect.arrayContaining(['destPath/to/file.txt']));
     done();
   });
 });
