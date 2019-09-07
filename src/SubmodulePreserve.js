@@ -112,4 +112,4 @@ if (process.env.NODE_ENV === 'test') {
 }
 
 // required for publishing the nuxt module as a npm package
-module.exports.meta = '../package.json';
+module.exports.meta = require('../package.json');

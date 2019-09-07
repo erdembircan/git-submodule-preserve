@@ -1,4 +1,6 @@
 import fs from 'fs';
+import path from 'path';
+
 import { toolBox } from '../src/SubmodulePreserve';
 
 jest.mock('fs');
@@ -22,12 +24,14 @@ describe('toolBox', () => {
     done();
   });
   it('copyDir: should copy directory with one path tree', async done => {
-    const srcPath = 'path/to/file.txt';
+    const srcPath = 'path/to/inner/layer/file.txt';
     const destPath = 'destPath';
+    const srcMinParent = srcPath.match(/(?:[\w]+\/)(.+)/)[1];
+    const copiedDestPath = path.join(destPath, srcMinParent);
     fs.__setSourcePaths(srcPath);
     await toolBox.copyDir('path', destPath);
     expect(fs.__getTargetPaths().length).toBe(1);
-    expect(fs.__getTargetPaths()).toEqual(expect.arrayContaining(['destPath/to/file.txt']));
+    expect(fs.__getTargetPaths()).toEqual(expect.arrayContaining([copiedDestPath]));
     done();
   });
 });

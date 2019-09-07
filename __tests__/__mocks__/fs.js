@@ -45,6 +45,10 @@ function readdirSync(src) {
   return [...new Set(tempArray)];
 }
 
+function copyFileSync(from, to) {
+  mkdirSync(to);
+}
+
 function statSync(p) {
   const base = path.extname(p);
 
@@ -70,6 +74,7 @@ fs.__resetAllPaths = () => {
 
 fs.__pathRegex = __pathRegex;
 fs.readdirSync = readdirSync;
+fs.copyFileSync = copyFileSync;
 
 fs.statSync = statSync;
 

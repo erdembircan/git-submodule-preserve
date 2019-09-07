@@ -77,4 +77,9 @@ describe('fs mock module', () => {
     expect(fs.statSync(mockPath1).isDirectory()).toBeFalsy();
     expect(fs.statSync(mockPath3).isDirectory()).toBeTruthy();
   });
+  it('copyFileSync: should copy file from one location to another', () => {
+    fs.copyFileSync('path/to/file.txt', 'target/to/file.txt');
+    expect(fs.__getTargetPaths().length).toBe(1);
+    expect(fs.__getTargetPaths()).toEqual(expect.arrayContaining(['target/to/file.txt']));
+  });
 });
