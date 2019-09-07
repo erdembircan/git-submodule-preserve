@@ -2,7 +2,7 @@
   "name": "git-submodule-preserve",
   "version": "1.0.0",
   "description": "nuxt module for preserving git submodule in generated static apps",
-  "module": "./src/SubmodulePreserve.js",
+  "main": "./src/SubmodulePreserve.js",
   "repository": "git@github.com:erdembircan/git-submodule-preserve.git",
   "author": "Erdem Bircan <erdem.erdembircan@gmail.com>",
   "license": "MIT",
