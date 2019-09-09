@@ -1,54 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import { stdout } from 'process';
-import ft from 'fancy-terminal';
 import folderDelete from 'folder-delete';
+import { copyDir, log } from './toolbox';
 
 let continueOperation = true;
-
-/**
- * logger function
- * @param {string} message message to be outputted to stdout
- * @param {string} [type='info'] message type, possible types are info, warning, success and error
- */
-function log(message, type = 'info') {
-  const types = {
-    info: ['blue', '💡'],
-    warning: ['yellow', '⚠️'],
-    success: ['green', '✔️'],
-    error: ['red', '⛔'],
-  };
-  const cLog = ft[types[type][0]] || ft.black;
-  stdout.write(`${ft.cyan('[SubmodulePreserve]')}: ${types[type][1] || ''}  ${cLog(message)}\n`);
-}
-
-/**
- * recursive directory copy
- *
- * @param {string} from source path
- * @param {string} to destination path
- *
- * @returns {Promise<object|void>} a Promise object
- */
-function copyDir(from, to) {
-  return new Promise((res, rej) => {
-    try {
-      fs.mkdirSync(to, { recursive: true });
-      fs.readdirSync(from).forEach(dir => {
-        const currSrcPath = path.join(from, dir);
-        const currDestPath = path.join(to, dir);
-        if (fs.statSync(currSrcPath).isDirectory()) {
-          copyDir(currSrcPath, currDestPath);
-        } else {
-          fs.copyFileSync(currSrcPath, currDestPath);
-        }
-      });
-      res();
-    } catch (e) {
-      rej(e);
-    }
-  });
-}
 
 /**
  * nuxt generate:before hook call
@@ -97,19 +52,15 @@ async function generateDone(nuxt) {
   }
 }
 
-/**
- * @module SubmodulePreserve
- */
-export default function SubmodulePreserve() {
+function SubmodulePreserve() {
   this.nuxt.hook('generate:before', generateBeforeHook);
   this.nuxt.hook('generate:done', generateDone);
 }
 
-if (process.env.NODE_ENV === 'test') {
-  module.exports.toolBox = {
-    copyDir,
-  };
-}
+// meta export for nuxt npm module
+SubmodulePreserve.meta = require('../package.json');
 
-// required for publishing the nuxt module as a npm package
-module.exports.meta = require('../package.json');
+/**
+ * @module SubmodulePreserve
+ */
+export default SubmodulePreserve;

@@ -2,6 +2,7 @@
 
 - [ ] readme
   - [ ] why section
-- [ ] npm local module testing on a `nuxt` project
+- [x] npm local module testing on a `nuxt` project
 - [ ] github release
-- [ ] rollup build
+- [x] rollup build
+  - [x] banner
