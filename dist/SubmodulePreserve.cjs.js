@@ -223,6 +223,9 @@ function generateDone(nuxt) {return __async(function*(){
   }
 }())}
 
+/**
+ * entry point for nuxt module logic
+ */
 function SubmodulePreserve() {
   this.nuxt.hook('generate:before', generateBeforeHook);
   this.nuxt.hook('generate:done', generateDone);

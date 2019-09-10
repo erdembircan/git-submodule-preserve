@@ -21,7 +21,8 @@
     "dev:build": "rollup -c -w",
     "dev:test": "jest --verbose --watchAll",
     "test": "npm run lint & jest",
-    "build": "rollup -c"
+    "prod:build": "rollup -c",
+    "pre:publish": "npm run prod:build & npm run test"
   },
   "dependencies": {
     "folder-delete": "^1.0.4"
